@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34212.112
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TangyBlazor_Server", "TangyBlazor_Server\TangyBlazor_Server.csproj", "{F4D2B77D-56E0-4065-9050-1E5B49B3BCAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4D2B77D-56E0-4065-9050-1E5B49B3BCAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4D2B77D-56E0-4065-9050-1E5B49B3BCAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D2B77D-56E0-4065-9050-1E5B49B3BCAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4D2B77D-56E0-4065-9050-1E5B49B3BCAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9AA3E29C-3B54-4189-A10B-587AEB695E9F}
+	EndGlobalSection
+EndGlobal
