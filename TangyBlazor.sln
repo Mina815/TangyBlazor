@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34212.112
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TangyBlazor_Server", "TangyBlazor_Server\TangyBlazor_Server.csproj", "{F4D2B77D-56E0-4065-9050-1E5B49B3BCAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TangyBlazor_Client", "TangyBlazor_Client\TangyBlazor_Client.csproj", "{1F4389FB-7E2D-400F-9C32-83BEFEB718CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TangyBlazor_Client", "TangyBlazor_Client\TangyBlazor_Client.csproj", "{1F4389FB-7E2D-400F-9C32-83BEFEB718CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{944907A0-7A59-48A2-80FD-8AAC37AEA844}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1F4389FB-7E2D-400F-9C32-83BEFEB718CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F4389FB-7E2D-400F-9C32-83BEFEB718CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F4389FB-7E2D-400F-9C32-83BEFEB718CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{944907A0-7A59-48A2-80FD-8AAC37AEA844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{944907A0-7A59-48A2-80FD-8AAC37AEA844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{944907A0-7A59-48A2-80FD-8AAC37AEA844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{944907A0-7A59-48A2-80FD-8AAC37AEA844}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

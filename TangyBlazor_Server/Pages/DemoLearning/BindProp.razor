@@ -1,0 +1,45 @@
+﻿@page "/DemoLearning/BindProp"
+@using Models.DemoModels;
+<h3>Product</h3>
+
+<div>
+    Name : @Product.Name <br />
+    Active : @Product.IsActive <br />
+    price : @Product.price <br />
+    This product is : @(Product.IsActive?"Active":"InActive")<br />
+    Property : @SelectedProp <br />
+    @if (!String.IsNullOrWhiteSpace(SelectedProp))
+    {
+        <p>The Value of this Propetry : @Product.Properties.FirstOrDefault(u=>u.Key==SelectedProp).Value </p>
+    }
+</div>
+<hr />
+Activate Product : <InputCheckbox @bind-Value="@Product.IsActive">Activate</InputCheckbox>
+<br />
+Price : <input type="number" @bind-value="@Product.price" />
+<br />
+<select @bind="@SelectedProp">
+    @foreach(var prop in Product.Properties)
+    {
+        <option value="@prop.Key">@prop.Key</option>
+    }
+</select>
+
+@code {
+    private string SelectedProp = "";
+    DemoProduct Product = new()
+        {
+            Id = 1,
+            Name = "Mina",
+            IsActive = true,
+            price = 10.50,
+            Properties = new List<DemoProductProp>()
+            {
+                new DemoProductProp{ ID = 1, Key = "Color", Value="Black"},
+                new DemoProductProp { ID = 2, Key = "Flavor", Value = "Rose Jasmine" },
+                new DemoProductProp { ID = 3, Key = "Size", Value = "20oz"},
+            }
+    };
+    
+    
+}
