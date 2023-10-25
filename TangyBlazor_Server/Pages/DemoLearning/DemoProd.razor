@@ -1,33 +1,19 @@
 ﻿@page "/DemoLearning/DemoProd"
-@using Models.DemoModels;
+@* @using Models.DemoModels; *@
 <h2 class="text-primary">DemoProd</h2>
 <hr />
 
 <div class="row">
     @foreach(var prod in Products)
     {
-        <div class="col-6 border-secondary">
-            <h3 class="text-secondary"> @prod.Name</h3>
-            
-            Show Properties: <InputCheckbox @bind-Value="@prod.IsActive">Show Properties</InputCheckbox>
-            @if(prod.IsActive)
-            {
-                <div>
-                    @foreach(var prop in @prod.Properties)
-                    {
-                        <p>@prop.Key - @prop.Value</p>
-                    }
-                </div>
-            }
-            <br>    
-            <_EditDeleteButton></_EditDeleteButton>
-        </div>
+        <DemoProductComponent prod="prod"></DemoProductComponent>
     }
-    
+
 </div>
 @code {
     List<DemoProduct> Products = new();
     private bool isChecked = false;
+    public int FavCounter = 0;
     protected override void OnInitialized()
     {
         Products.Add(new()
@@ -58,4 +44,5 @@
             }
             });
     }
+    
 }
