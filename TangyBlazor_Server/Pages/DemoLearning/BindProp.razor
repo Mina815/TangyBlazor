@@ -24,6 +24,54 @@ Price : <input type="number" @bind-value="@Product.price" />
         <option value="@prop.Key">@prop.Key</option>
     }
 </select>
+<hr />
+<div class="row">
+
+    <div class="row border-primary p-2">
+        <h2 class="text-primary">Products Update</h2>        
+
+        <table class="table table-striped">
+            <tbody>
+                @foreach(var prod in Products)
+                {
+                    <tr>
+                        <td>
+                            <input type="text" @bind-value="@prod.Name"> 
+                        </td>
+                        <td>
+                            <input type="text" @bind-value="@prod.price"> 
+                        </td>
+                        <td>
+                            <InputCheckbox @bind-Value="@prod.IsActive">Activate</InputCheckbox>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        
+    </div>
+
+    <div>
+        <h2 class="text-primary"> Products Summary</h2>
+        <div class="row">
+            @foreach (var prod in Products)
+            {
+                <div class="col-4">
+                    Name : @prod.Name
+                </div>
+                <div class="col-4">
+                    Price : @prod.price
+                </div>
+                <div class="col-4">
+                    This product is : @(prod.IsActive ? "Active" : "InActive")
+                </div>
+
+            }
+        </div>
+        <br />
+
+    </div>
+</div>
 
 @code {
     private string SelectedProp = "";
@@ -40,6 +88,38 @@ Price : <input type="number" @bind-value="@Product.price" />
                 new DemoProductProp { ID = 3, Key = "Size", Value = "20oz"},
             }
     };
-    
-    
+    List<DemoProduct> Products = new();
+
+    protected override void OnInitialized()
+    {
+        Products.Add(new()
+            {
+                Id = 1,
+                Name = "Midnight Blaze",
+                IsActive = false,
+                price = 20,
+                Properties = new List<DemoProductProp>()
+                {
+                    new DemoProductProp { ID = 1, Key = "Flavor", Value = "Rose"},
+                     new DemoProductProp { ID = 2, Key = "Size", Value = "20oz"},
+                    new DemoProductProp { ID = 3, Key = "Color", Value="Purple" }
+                }
+            });
+
+        Products.Add(new()
+            {
+                Id = 2,
+                Name = "Blossom Lily",
+                IsActive = true,
+                price = 40,
+        Properties = new List<DemoProductProp>()
+            {
+                new DemoProductProp { ID = 1, Key = "Flavor", Value = "Lily" },
+                new DemoProductProp { ID = 2, Key = "Size", Value = "18oz" },
+                new DemoProductProp {ID = 3,Key = "Color",Value = "White"}
+            }
+            });
+    }
+
+
 }

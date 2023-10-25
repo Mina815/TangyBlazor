@@ -12,6 +12,6 @@ namespace Models.DemoModels
         public string Name { get; set; }
         public double price { get; set; }
         public bool IsActive { get; set; }
-        public IEnumerable<DemoProductProp> Properties { get; set; }
+        public List<DemoProductProp> Properties { get; set; }
     }
 }

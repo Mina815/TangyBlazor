@@ -1,0 +1,61 @@
+﻿@page "/DemoLearning/DemoProd"
+@using Models.DemoModels;
+<h2 class="text-primary">DemoProd</h2>
+<hr />
+
+<div class="row">
+    @foreach(var prod in Products)
+    {
+        <div class="col-6 border-secondary">
+            <h3 class="text-secondary"> @prod.Name</h3>
+            
+            Show Properties: <InputCheckbox @bind-Value="@prod.IsActive">Show Properties</InputCheckbox>
+            @if(prod.IsActive)
+            {
+                <div>
+                    @foreach(var prop in @prod.Properties)
+                    {
+                        <p>@prop.Key - @prop.Value</p>
+                    }
+                </div>
+            }
+            <br>    
+            <_EditDeleteButton></_EditDeleteButton>
+        </div>
+    }
+    
+</div>
+@code {
+    List<DemoProduct> Products = new();
+    private bool isChecked = false;
+    protected override void OnInitialized()
+    {
+        Products.Add(new()
+            {
+                Id = 1,
+                Name = "Midnight Blaze",
+                IsActive = false,
+                price = 20,
+        Properties = new List<DemoProductProp>()
+                {
+                    new DemoProductProp { ID = 1, Key = "Flavor", Value = "Rose"},
+                     new DemoProductProp { ID = 2, Key = "Size", Value = "20oz"},
+                    new DemoProductProp { ID = 3, Key = "Color", Value="Purple" }
+                }
+            });
+
+        Products.Add(new()
+            {
+                Id = 2,
+                Name = "Blossom Lily",
+                IsActive = true,
+                price = 40,
+                Properties = new List<DemoProductProp>()
+            {
+                new DemoProductProp { ID = 1, Key = "Flavor", Value = "Lily" },
+                new DemoProductProp { ID = 2, Key = "Size", Value = "18oz" },
+                new DemoProductProp {ID = 3,Key = "Color",Value = "White"}
+            }
+            });
+    }
+}

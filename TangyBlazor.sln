@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TangyBlazor_Server", "Tangy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TangyBlazor_Client", "TangyBlazor_Client\TangyBlazor_Client.csproj", "{1F4389FB-7E2D-400F-9C32-83BEFEB718CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{944907A0-7A59-48A2-80FD-8AAC37AEA844}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{944907A0-7A59-48A2-80FD-8AAC37AEA844}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
