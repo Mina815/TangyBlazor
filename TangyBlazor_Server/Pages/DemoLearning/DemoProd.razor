@@ -2,18 +2,20 @@
 @* @using Models.DemoModels; *@
 <h2 class="text-primary">DemoProd</h2>
 <hr />
-
+Favourite counter : @FavCounter <br />
+Last selected product : @lastProduct
 <div class="row">
     @foreach(var prod in Products)
     {
-        <DemoProductComponent prod="prod"></DemoProductComponent>
+        <DemoProductComponent prod="prod" OnFavouriteSelection="UpdateFavouriteCounter" OnLastSelection="UpdateLastProduct"></DemoProductComponent>
     }
-
+        
 </div>
 @code {
     List<DemoProduct> Products = new();
     private bool isChecked = false;
     public int FavCounter = 0;
+    public string lastProduct { get; set; }
     protected override void OnInitialized()
     {
         Products.Add(new()
@@ -44,5 +46,14 @@
             }
             });
     }
-    
+
+    public void UpdateFavouriteCounter(bool isChecked)
+    {
+        if (isChecked) FavCounter++;
+        else FavCounter--;
+    }
+    public void UpdateLastProduct(string name)
+    {
+        lastProduct = name;
+    }
 }

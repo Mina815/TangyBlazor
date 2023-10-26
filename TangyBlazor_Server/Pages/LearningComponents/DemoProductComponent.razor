@@ -1,6 +1,7 @@
 ﻿
-<div class="bg-light col-5 border m-1">
+<div class="bg-light col-5 border m-1" @onclick="(args)=>LastSelect(args,prod.Name)">
     <h3 class="text-secondary"> @prod.Name</h3>
+    Add to favourite <input type="checkbox" @onchange="FavouriteUpdated" />
     Show Properties: <InputCheckbox @bind-Value="@prod.IsActive">Show Properties</InputCheckbox>
     @if (prod.IsActive)
     {
@@ -19,4 +20,21 @@
 @code {
     [Parameter]
     public DemoProduct prod { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnFavouriteSelection{ get; set; }
+
+    private async Task FavouriteUpdated(ChangeEventArgs e)
+    {
+        await OnFavouriteSelection.InvokeAsync((bool)e.Value);
+    }
+
+
+    [Parameter]
+    public EventCallback<string> OnLastSelection{ get; set; }
+    private async Task LastSelect(MouseEventArgs e,string name)
+    {
+        await OnLastSelection.InvokeAsync(name);
+    }
+
 }
