@@ -1,0 +1,15 @@
+﻿@page "/DemoLearning/blazorjs"
+@inject IJSRuntime _JSRuntime; 
+
+<h3>BlazorJS</h3>
+
+<div>
+    <button class="btn btn-primary" @onclick="Confirmbtn">Comfirm</button>
+</div>
+@code {
+    private string confirmMSG = "Hi, this is confirmation msg!";
+    private async Task Confirmbtn()
+    {
+       await _JSRuntime.InvokeAsync<bool>("confirm", confirmMSG);
+    }
+}
