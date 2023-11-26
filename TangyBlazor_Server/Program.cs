@@ -12,6 +12,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSingleton<WeatherForecastService>();
 
 var app = builder.Build();
