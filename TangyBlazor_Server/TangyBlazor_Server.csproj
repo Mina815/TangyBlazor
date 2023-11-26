@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\TangyBlazor_DataAccess\TangyBlazor_DataAccess.csproj" />
+    <ProjectReference Include="..\TangyBlazor_UseCases\TangyBlazor_UseCases.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,10 +9,10 @@ namespace TangyBlazor_UseCases.Repository.IRepository
 {
     public interface ICategoryRepository
     {
-        public CategoryDTO Create(CategoryDTO category);
-        public CategoryDTO Update(CategoryDTO category);
-        public CategoryDTO Delete(int id);
-        public CategoryDTO Get(int id);
+        public Task<CategoryDTO> Create(CategoryDTO category);
+        public Task<CategoryDTO> Update(CategoryDTO category);
+        public Task<bool> Delete(int id);
+        public Task<CategoryDTO> Get(int id);
         public IEnumerable<CategoryDTO> GetAll();
     }
 }
