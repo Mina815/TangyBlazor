@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TangyBlazor_Client", "Tangy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{944907A0-7A59-48A2-80FD-8AAC37AEA844}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TangyBlazor_UseCases", "TangyBlazor_UseCases\TangyBlazor_UseCases.csproj", "{0E443EA1-7CA8-4A1F-A88C-DD26EF5D1EE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TangyBlazor_UseCases", "TangyBlazor_UseCases\TangyBlazor_UseCases.csproj", "{0E443EA1-7CA8-4A1F-A88C-DD26EF5D1EE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TangyBlazor_Common", "TangyBlazor_Common\TangyBlazor_Common.csproj", "{04E7DE7E-F2F2-4CB6-8ACF-43030ACD776A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TangyBlazor_Common", "TangyBlazor_Common\TangyBlazor_Common.csproj", "{04E7DE7E-F2F2-4CB6-8ACF-43030ACD776A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TangyBlazor_DataAccess", "TangyBlazor_DataAccess\TangyBlazor_DataAccess.csproj", "{1BA0AEB2-5BA3-49B1-B070-A6909A3FE924}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TangyBlazor_DataAccess", "TangyBlazor_DataAccess\TangyBlazor_DataAccess.csproj", "{1BA0AEB2-5BA3-49B1-B070-A6909A3FE924}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
