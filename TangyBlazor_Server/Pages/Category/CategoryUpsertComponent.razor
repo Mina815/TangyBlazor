@@ -1,9 +1,14 @@
 ﻿@page "/category/create"
+@inject ICategoryRepository _categories
+@inject NavigationManager nav
+@inject IJSRuntime _JSRuntime;
 <div class="row my-2">
     <h3 class="card-title text-primary mb-3 ml-3">@Title Category</h3>
 
     <div class="col-12">
-        <EditForm Model="Category">
+        <EditForm Model="Category" OnValidSubmit="upsertCategory">
+            <DataAnnotationsValidator/>  
+            <ValidationSummary/>
             <div class="form-group">
                 <label>Name</label>
                 <InputText @bind-Value="Category.Name" class="form-control"></InputText>
@@ -20,4 +25,19 @@
 @code {
     private CategoryDTO Category { get; set; } = new();
     private string Title { get; set; } = "Create";
+
+    private void upsertCategory()
+    {
+        try
+        {
+            _categories.Create(Category);
+            _JSRuntime.ToastrSuccess("success");
+            nav.NavigateTo("/category");
+
+        }
+        catch
+        {
+            _JSRuntime.ToastrFalure("failed");
+        }
+    }
 }
