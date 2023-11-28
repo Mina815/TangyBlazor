@@ -5,4 +5,12 @@
     if (type === "error") {
         toastr.error(message, "Operation Failed", { timeOut: 5000 });
     }
+
+}
+function ShowDeleteConfirmationModal() {
+    $('#deleteConfirmationModal').modal('show');
+}
+
+function HideDeleteConfirmationModal() {
+    $('#deleteConfirmationModal').modal('hide');
 }
