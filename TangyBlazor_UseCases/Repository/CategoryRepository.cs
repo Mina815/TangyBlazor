@@ -59,7 +59,16 @@ namespace TangyBlazor_UseCases.Repository
 
         public IEnumerable<CategoryDTO> GetAll()
         {
-            return _mapper.Map<IEnumerable<Category>,IEnumerable<CategoryDTO>>(_db.categories);
+            try
+            {
+                return _mapper.Map<IEnumerable<Category>,IEnumerable<CategoryDTO>>(_db.categories);
+
+            }
+            catch(Exception ex)
+            {
+                var x = ex.Message;
+                return Enumerable.Empty<CategoryDTO>();
+            }
         }
 
         public async Task<CategoryDTO> Update(CategoryDTO obj)

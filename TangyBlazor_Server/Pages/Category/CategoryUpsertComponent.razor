@@ -1,43 +1,88 @@
 ﻿@page "/category/create"
+@page "/category/edit/{Id:int}"
+
 @inject ICategoryRepository _categories
 @inject NavigationManager nav
 @inject IJSRuntime _JSRuntime;
+
+
 <div class="row my-2">
     <h3 class="card-title text-primary mb-3 ml-3">@Title Category</h3>
 
     <div class="col-12">
-        <EditForm Model="Category" OnValidSubmit="upsertCategory">
-            <DataAnnotationsValidator/>  
-            <ValidationSummary/>
-            <div class="form-group">
-                <label>Name</label>
-                <InputText @bind-Value="Category.Name" class="form-control"></InputText>
+        @if (isLoading)
+        {
+            <div>
+                <img src="img/loading.gif" />
             </div>
-            <br />
-            <div class="form-group">
-                <button class="btn btn-primary">@Title</button>
-                <NavLink href="category" class="btn btn-secondary">Back to categories</NavLink>
-            </div>
-        </EditForm>
+        }
+        else
+        {
+            <EditForm Model="Category" OnValidSubmit="upsertCategory">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <div class="form-group">
+                    <label>Name</label>
+                    <InputText @bind-Value="Category.Name" class="form-control"></InputText>
+                </div>
+                <br />
+                <div class="form-group">
+                    <button class="btn btn-primary">@Title</button>
+                    <NavLink href="category" class="btn btn-secondary">Back to categories</NavLink>
+                </div>
+            </EditForm>
+        }
     </div>
 </div>
 
 @code {
+    [Parameter]
+    public int Id { get; set; }
+    private bool isLoading = true;
+
     private CategoryDTO Category { get; set; } = new();
+
     private string Title { get; set; } = "Create";
 
-    private void upsertCategory()
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == 0)
+        {
+            isLoading = false;
+        }
+        else
+        {
+            Title = "Edit";
+            await Task.Run(loadCategory);
+
+        }
+    }
+    private async Task loadCategory()
+    {
+
+        Category = await _categories.Get(Id);
+        isLoading = false;
+    }
+
+    private async Task upsertCategory()
     {
         try
         {
-            _categories.Create(Category);
-            _JSRuntime.ToastrSuccess("success");
+            if(Category.Id == 0)
+            {
+                await _categories.Create(Category);
+            }
+            else
+            {
+                await  _categories.Update(Category);
+            }
+            await _JSRuntime.ToastrSuccess("success");
             nav.NavigateTo("/category");
 
         }
         catch
         {
-            _JSRuntime.ToastrFalure("failed");
+            await _JSRuntime.ToastrFalure("failed");
         }
     }
 }
