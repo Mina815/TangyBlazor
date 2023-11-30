@@ -13,6 +13,6 @@ namespace TangyBlazor_UseCases.Repository.IRepository
         public Task<CategoryDTO> Update(CategoryDTO category);
         public Task<bool> Delete(int id);
         public Task<CategoryDTO> Get(int id);
-        public IEnumerable<CategoryDTO> GetAll();
+        public Task<IEnumerable<CategoryDTO>> GetAll();
     }
 }

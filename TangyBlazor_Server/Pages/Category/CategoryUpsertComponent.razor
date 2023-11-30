@@ -38,43 +38,48 @@
 @code {
     [Parameter]
     public int Id { get; set; }
-    private bool isLoading = true;
+    private bool isLoading { get; set; }
 
     private CategoryDTO Category { get; set; } = new();
 
     private string Title { get; set; } = "Create";
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (Id == 0)
+        if (firstRender)
         {
-            isLoading = false;
-        }
-        else
-        {
-            Title = "Edit";
-            await Task.Run(loadCategory);
+            if (Id == 0)
+            {
+                isLoading = false;
+            }
+            else
+            {
+                Title = "Edit";
+                await loadCategory();
 
+            }
         }
     }
     private async Task loadCategory()
     {
-
+        isLoading = true;
+        StateHasChanged();
         Category = await _categories.Get(Id);
         isLoading = false;
+        StateHasChanged();
     }
 
     private async Task upsertCategory()
     {
         try
         {
-            if(Category.Id == 0)
+            if (Category.Id == 0)
             {
                 await _categories.Create(Category);
             }
             else
             {
-                await  _categories.Update(Category);
+                await _categories.Update(Category);
             }
             await _JSRuntime.ToastrSuccess("success");
             nav.NavigateTo("/category");

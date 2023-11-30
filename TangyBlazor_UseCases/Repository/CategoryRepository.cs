@@ -57,7 +57,7 @@ namespace TangyBlazor_UseCases.Repository
             return new CategoryDTO();
         }
 
-        public IEnumerable<CategoryDTO> GetAll()
+        public async  Task<IEnumerable<CategoryDTO>> GetAll()
         {
             try
             {
