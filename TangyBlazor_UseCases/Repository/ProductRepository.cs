@@ -33,10 +33,10 @@ namespace TangyBlazor_UseCases.Repository
 
         public async Task<bool> Delete(int id)
         {
-            var Product = await _db.categories.Where(u => u.Id == id).FirstOrDefaultAsync();
+            var Product = await _db.products.Where(u => u.Id == id).FirstOrDefaultAsync();
             if(Product != null)
             {
-                _db.categories.Remove(Product);
+                _db.products.Remove(Product);
                 await _db.SaveChangesAsync();
                 return true;
             }
@@ -48,7 +48,7 @@ namespace TangyBlazor_UseCases.Repository
 
         public async Task<ProductDTO> Get(int id)
         {
-            var Product = await _db.products.Where(u => u.Id == id).FirstOrDefaultAsync();
+            var Product = await _db.products.Include(u=> u.Category).Where(u => u.Id == id).FirstOrDefaultAsync();
             if(Product != null)
             {
                 return _mapper.Map<Product, ProductDTO>(Product);
@@ -60,7 +60,7 @@ namespace TangyBlazor_UseCases.Repository
         {
             try
             {
-                return _mapper.Map<IEnumerable<Product>,IEnumerable<ProductDTO>>(_db.products);
+                return _mapper.Map<IEnumerable<Product>,IEnumerable<ProductDTO>>(_db.products.Include(u => u.Category));
 
             }
             catch(Exception ex)

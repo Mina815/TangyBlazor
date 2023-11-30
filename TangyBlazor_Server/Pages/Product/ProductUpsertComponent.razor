@@ -1,0 +1,127 @@
+﻿@page "/product/create"
+@page "/product/edit/{Id:int}"
+
+@inject ICategoryRepository _categories
+@inject IProductRepository _productsRepository
+@inject NavigationManager nav
+@inject IJSRuntime _JSRuntime;
+
+
+<div class="row my-2">
+    <h3 class="card-title text-primary mb-3 ml-3">@Title Product</h3>
+
+    <div class="col-12">
+        @if (isLoading)
+        {
+            <div>
+                <img src="img/loading.gif" />
+            </div>
+        }
+        else
+        {
+            <EditForm Model="Product" OnValidSubmit="upsertProduct">
+                <DataAnnotationsValidator />
+                @*<ValidationSummary/>*@
+                <div class="form-group">
+                    <label>Name</label>
+                    <InputText @bind-Value="Product.Name" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Product.Name"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>Color</label>
+                    <InputText @bind-Value="Product.Color" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Product.Color"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <InputText @bind-Value="Product.Name" class="form-control"></InputText>
+                    <ValidationMessage For="()=>Product.Name"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <InputTextArea @bind-Value="Product.Desciption" class="form-control"></InputTextArea>
+                    <ValidationMessage For="()=>Product.Desciption"></ValidationMessage>
+                </div>
+
+                <div class="row pt-3">
+                    <div class="btn-group col-6">
+                        <div class="form-check">
+                            <InputCheckbox @bind-Value="Product.ShopFavorites" class="form-check-input"></InputCheckbox>
+                            <label class="form-check-label">Is Shop Favorites</label>
+                        </div>
+                    </div>
+                    <div class="btn-group col-6">
+                        <div class="form-check">
+                            <InputCheckbox @bind-Value="Product.CustomerFavorites" class="form-check-input"></InputCheckbox>
+                            <label class="form-check-label">Is Customer Favorites</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group py-2">
+                    <button class="btn btn-primary">@Title</button>
+                    <NavLink href="product" class="btn btn-secondary">Back to Index</NavLink>
+                </div>
+            </EditForm>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private bool isLoading { get; set; }
+
+    private IEnumerable<CategoryDTO> Categories { get; set; } = new List<CategoryDTO>();
+
+        
+    private ProductDTO Product { get; set; } = new();
+
+    private string Title { get; set; } = "Create";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+            await loadProduct();
+
+        }
+    }
+    private async Task loadProduct()
+    {
+        isLoading = true;
+        StateHasChanged();
+        Categories = await _categories.GetAll();
+        if(Id != 0)
+        {
+            Title = "Update";
+            Product = await _productsRepository.Get(Id);
+        }
+        isLoading = false;
+        StateHasChanged();
+    }
+
+    private async Task upsertProduct()
+    {
+        try
+        {
+            if (Product.Id == 0)
+            {
+                await _productsRepository.Create(Product);
+            }
+            else
+            {
+                await _productsRepository.Update(Product);
+            }
+            await _JSRuntime.ToastrSuccess("success");
+            nav.NavigateTo("/product");
+
+        }
+        catch
+        {
+            await _JSRuntime.ToastrFalure("failed");
+        }
+    }
+}
